@@ -10,6 +10,8 @@ document.body.addEventListener("click", () => {
   alarm.play().then(() => alarm.pause());
 });
 
+
+
 async function init() {
   statusText.innerText = "Loading model...";
 
@@ -38,7 +40,7 @@ async function predict() {
   const predictions = await model.predict(webcam.canvas);
 
   predictions.forEach(p => {
-    if (p.className === "Distracted" && p.probability > 0.9) {
+    if (p.className === "Distracted" && p.probability > 0.9) { // at 90 percent distraction, alarm is triggered
       statusText.innerText = "🚨 GET BACK TO WORK";
       if (alarm.paused) alarm.play();
     }
